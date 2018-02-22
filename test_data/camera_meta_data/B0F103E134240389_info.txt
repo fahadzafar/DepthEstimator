@@ -1,0 +1,2 @@
+DSN 	 Month-Day-Year 	 Hour:Minute:Second
+B0F103E134240389 	 10-16-2013 	 14:36:30

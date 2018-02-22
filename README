@@ -1,0 +1,95 @@
+Author: Fahad Zafar
+Software Description: Utility used to generate depth maps for a series of image sequences (.raw) of the 4 CC.
+
+// The code contains some test data sets, a matlab file to crop the image sequences and generate the original and the depth map in a side-by-side viewing fashion. 
+
+
+//--------------------------------------------------------------------
+RUNNING FROM COMMANDLINE:
+
+Before you can compile the program, you need to make sure that OpenCV is installed on the system.
+Make sure that you cna link to the following from your environment. 
+
+-lopencv_core -lopencv_highgui  -lopencv_imgproc  
+
+
+The code has been tested with OpenCV 2.4.9. The make file is present in the Debug/ directory.
+simply type make to compile the code.
+
+
+RUN COMMAND:
+ ./DepthEstimator  -input  checkerboard_parameters.txt
+
+
+
+RUNNING FROM ECLIPSE:
+The project can be imported in Eclipse.
+
+
+//--------------------------------------------------------------------
+RUNNING SAMPLES.
+
+Ther are 2 samples provided with the code 
+
+
+1. CHECKER BOARD WARPING SAMPLE
+RUN COMMAND: 
+./DepthEstimator  -input  checkerboard_parameters.txt
+
+DESCRIPTION:
+This sample shows how the warping (after fixing distortion) alligns points in the scene at a known depth and plane normal. The parameter file provides the normal and the depth at which the cheackerboard plane is exists in the real world.
+
+Running the code outputs 3 types of png images.
+input_x.png: The input that was given to the algorithm.
+
+undistort_x.png: The input images undistorted using the known camera parameters.
+
+undistort_minus_warped_x.png: The warped image is subtracted from the camera_0 undistorted image. This image shows the bias in the estimation since the checker board should completely allign and should cancel out after the subtraction.
+
+No depth estimation is run after the images are written.
+ 
+
+OUTPUTS:
+Outputs are generated inside the Debug/ directory.
+
+
+
+
+
+
+
+2. DEPTH ESTIMATION FOR FACE CLOSEUP DATA SET
+RUN COMMAND:
+./DepthEstimator  -input face_closeup_7_29_14_parameters.txt
+
+DESCRIPTION: 
+
+This parameter file outputs the depth maps for the input sequence present in test_data/face_closeup_7_29_14. All the parameters are preset and some sample images are also provided.
+
+OUTPUTS:
+Outputs are generated inside the following directories,
+
+test_data/face_closeup_7_29_14/depth_maps_grey/
+test_data/face_closeup_7_29_14/depth_maps_bin/
+
+
+test_data/face_closeup_7_29_14/sample_output/ contains some sample pngs that should be generated inside the depth_maps_grey/ folder after you run the utility. 
+
+
+
+
+
+
+
+//-------------------------------------------------------
+DIRECTORIES INFORMATION
+
+Debug/ : contains the make file, execution and any outputs from the checker_board sample.
+
+test_data/ : contains all the inputs for running the 2 DepthEstimator samples and Summed Area Table test data.
+
+src/ : contains the entire program source tree.
+
+
+
+

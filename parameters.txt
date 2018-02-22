@@ -1,0 +1,62 @@
+// This is the number of threads.
+// acceptable values: 1, 2, 3, 4, 5, 6, 7, 8
+num_threads = 8
+
+// The number of stereo images used for extracting depth.
+// For depth extraction you only need 2 images which is the fastest,
+// but with 4 images you get the slowest best estimates.
+// acceptable values: 2, 3, 4
+image_used_for_depth_cal = 4
+
+// Resolution of each image read from the camera .RAW file.
+// These resolution parameters are also used as dimensions for
+// output images from the depth estimation engine.
+image_width = 400
+image_height = 400
+
+// The normal of the depth plane where the image is. The depth estimator DOES NOT normalize this value.
+plane_normal = {0, 0, -1}
+
+// NCC Patch area.
+// use only odd values.
+patch_area_ncc = 11
+
+// Depth plane range and the step size used for the plane sweep algorithm.
+depth_start_from = 400
+depth_end_at = 550
+depth_increment = 1
+
+// These are the .raw frames that must be read from the input directory.
+start_read = 3
+end_read = 300
+
+// Apply the median filter to the final output.
+// use only odd values.
+patch_area_median = 5
+
+// Use distortion parameters to fix for distortion.
+fix_for_distortion = true
+
+// Names of the output directories for images and bin files.
+depth_map_dir_grey = depth_maps_grey
+depth_map_dir_bin = depth_maps_bin
+
+// If this parameter is "0", no stitched output will be written.
+depth_map_dir_stitched = depth_maps_stitched
+
+// Input data paths for .raw images and the STereoParameter XML files.
+path_input_raw_data = ../input_frame_data/face_closeup_7_29_14/
+path_input_stere_param_xml_data = /home/local/ANT/fahadz/workspace/OpenCVImageAllignment/input_frame_data/camera_meta_data/StereoParameters_B0F103E134240389_
+
+// Only set it true to run the preset data test with golden files present in test_data/checker_board/
+checkerboard_test = false
+
+// NCC threshold below which the NCC value is explicitly set to 0.
+ncc_threshold = 0.01
+
+// ************************* EXTRA *********************************************
+// You can create a movie after you have generated the images using this command.
+// This command will pick all the images in the directory and generate a movie at 20 frames/sec.
+// ffmpeg -qscale 1 -r 20 -b 9600 -i stitched_%03d.png b_movie.mp4
+
+
